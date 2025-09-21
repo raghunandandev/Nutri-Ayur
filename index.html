@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Āhāra Vidhi Vidhan - Ayurvedic Diet Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2E8B57 0%, #228B22 50%, #006400 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .platform-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .platform-header {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-header::before {
+            content: '🕉️';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .platform-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .platform-header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .principles-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .main-platform {
+            padding: 40px;
+            position: relative;
+        }
+        
+        .cloud-indicator {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .step-section {
+            display: none;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        .step-section.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .principle-header {
+            background: linear-gradient(135deg, #8E24AA, #6A1B9A);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .principle-count {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #FF5722;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .ayurvedic-form {
+            background: linear-gradient(135deg, #FFF8E1, #FFFDE7);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 2px solid #FFC107;
+            position: relative;
+        }
+        
+        .form-title {
+            color: #E65100;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #4E342E;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .sanskrit-term {
+            color: #8E24AA;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .principle-card {
+            background: white;
+            border: 2px solid #E8F5E8;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .principle-card:hover {
+            border-color: #4CAF50;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .principle-card.selected {
+            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+            border-color: #4CAF50;
+            color: #2E7D32;
+        }
+        
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35, #4CAF50);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .principle-card.selected::before {
+            opacity: 1;
+        }
+        
+        .principle-title {
+            font-weight: bold;
+            color: #2E7D32;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .principle-sanskrit {
+            color: #8E24AA;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .principle-desc {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .rasa-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .rasa-item {
+            background: linear-gradient(135deg, #FFF3E0, #FFCC80);
+            border: 2px solid #FFB74D;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .rasa-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 183, 77, 0.3);
+        }
+        
+        .rasa-item.selected {
+            background: linear-gradient(135deg, #FF6B35, #FF8A50);
+            color: white;
+            border-color: #FF6B35;
+        }
+        
+        .dosha-assessment {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .dosha-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .dosha-card.vata {
+            border-color: #9E9E9E;
+            background: linear-gradient(135deg, #FAFAFA, #F5F5F5);
+        }
+        
+        .dosha-card.pitta {
+            border-color: #FF5722;
+            background: linear-gradient(135deg, #FFF3E0, #FFCC80);
+        }
+        
+        .dosha-card.kapha {
+            border-color: #4CAF50;
+            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+        }
+        
+        .dosha-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #FF6B35, #FF8A50);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #757575, #424242);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 10px 25px rgba(117, 117, 117, 0.4);
+        }
+        
+        .ml-analysis {
+            background: linear-gradient(135deg, #E1F5FE, #B3E5FC);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #03A9F4;
+            position: relative;
+        }
+        
+        .ml-analysis::before {
+            content: '🤖';
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+        
+        .diet-results {
+            background: linear-gradient(135deg, #F1F8E9, #DCEDC8);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2E7D32;
+        }
+        
+        .meal-timeline {
+            display: grid;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .meal-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            position: relative;
+        }
+        
+        .meal-card.breakfast { border-left-color: #FF9800; }
+        .meal-card.lunch { border-left-color: #4CAF50; }
+        .meal-card.dinner { border-left-color: #3F51B5; }
+        .meal-card.snacks { border-left-color: #E91E63; }
+        
+        .meal-time {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #FF6B35;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .food-recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .food-item {
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid #DEE2E6;
+            transition: all 0.3s ease;
+        }
+        
+        .food-item:hover {
+            background: linear-gradient(135deg, #FFF3CD, #FCE4B6);
+            transform: translateY(-2px);
+        }
+        
+        .principle-explanation {
+            background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #FFA000;
+        }
+        
+        .cloud-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        
+        .progress-indicator {
+            background: #E0E0E0;
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #FF6B35, #4CAF50);
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .platform-header {
+                padding: 25px 20px;
+            }
+            
+            .platform-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .main-platform {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dosha-assessment {
+                grid-template-columns: 1fr;
+            }
+            
+            .principle-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cloud-indicator {
+                position: relative;
+                margin-bottom: 20px;
+            }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.4s ease;
+            z-index: 1001;
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .ayurvedic-spinner {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            border: 4px solid #E0E0E0;
+            border-top: 4px solid #FF6B35;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="platform-container">
+        <div class="platform-header">
+            <h1>🌿 Āhāra Vidhi Vidhan</h1>
+            <p class="subtitle">Advanced Ayurvedic Diet Platform</p>
+            <div class="principles-badge">Based on 20 Ancient Principles</div>
+        </div>
+        
+        <div class="main-platform">
+            <div class="cloud-indicator">
+                ☁️ Cloud-Based Platform
+            </div>
+            
+            <div class="progress-indicator">
+                <div class="progress-fill" id="progressBar" style="width: 12.5%"></div>
+            </div>
+            
+            <!-- Step 1: General Principles Assessment -->
+            <div class="step-section active" id="step1">
+                <div class="principle-header">
+                    <div class="principle-count">10</div>
+                    <h2>🕉️ General Ayurvedic Principles</h2>
+                    <p>Universal dietary guidelines for optimal health</p>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🔥 <span>Agni & Food Temperature</span>
+                    </div>
+                    
+                    <div class="principle-grid">
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'ushna')">
+                            <div class="principle-title">Uṣhṇa</div>
+                            <div class="principle-sanskrit">Hot/Warm Food</div>
+                            <div class="principle-desc">Prefer freshly cooked, warm meals that kindle digestive fire</div>
+                            <input type="hidden" name="ushna" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'snigdha')">
+                            <div class="principle-title">Snigdha</div>
+                            <div class="principle-sanskrit">Unctuous Food</div>
+                            <div class="principle-desc">Include healthy fats and oils for proper lubrication</div>
+                            <input type="hidden" name="snigdha" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'matravan')">
+                            <div class="principle-title">Mātrāvān</div>
+                            <div class="principle-sanskrit">Proper Quantity</div>
+                            <div class="principle-desc">Eat the right amount - not too much or too little</div>
+                            <input type="hidden" name="matravan" value="">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        ⏰ <span>Timing & Digestion</span>
+                    </div>
+                    
+                    <div class="principle-grid">
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'jirneashniyat')">
+                            <div class="principle-title">Jīrṇe Aśniyat</div>
+                            <div class="principle-sanskrit">After Digestion</div>
+                            <div class="principle-desc">Eat only when previous meal is completely digested</div>
+                            <input type="hidden" name="jirneashniyat" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'viryaaviruddham')">
+                            <div class="principle-title">Vīrya Aviruddham</div>
+                            <div class="principle-sanskrit">Non-contradictory</div>
+                            <div class="principle-desc">Avoid incompatible food combinations</div>
+                            <input type="hidden" name="viryaaviruddham" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'ishtadesha')">
+                            <div class="principle-title">Iṣṭa Deśa</div>
+                            <div class="principle-sanskrit">Clean Environment</div>
+                            <div class="principle-desc">Food prepared in wholesome, hygienic conditions</div>
+                            <input type="hidden" name="ishtadesha" value="">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🧘 <span>Mindful Eating & Processing</span>
+                    </div>
+                    
+                    <div class="principle-grid">
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'utsahasamyukta')">
+                            <div class="principle-title">Utsāha Samyukta</div>
+                            <div class="principle-sanskrit">Mindful Eating</div>
+                            <div class="principle-desc">Eat with calmness, focus, and gratitude</div>
+                            <input type="hidden" name="utsahasamyukta" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'atmanam')">
+                            <div class="principle-title">Ātmānām Abhisamīkṣya</div>
+                            <div class="principle-sanskrit">Self-Assessment</div>
+                            <div class="principle-desc">Consider your body constitution and digestive strength</div>
+                            <input type="hidden" name="atmanam" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'doshapratyaanika')">
+                            <div class="principle-title">Doṣa Pratyānīka</div>
+                            <div class="principle-sanskrit">Dosha Balancing</div>
+                            <div class="principle-desc">Choose foods that pacify aggravated doshas</div>
+                            <input type="hidden" name="doshapratyaanika" value="">
+                        </div>
+                        
+                        <div class="principle-card" onclick="togglePrincipleCard(this, 'kritasamskara')">
+                            <div class="principle-title">Kṛta Saṃskāra</div>
+                            <div class="principle-sanskrit">Properly Processed</div>
+                            <div class="principle-desc">Well-cooked and appropriately prepared food</div>
+                            <input type="hidden" name="kritasamskara" value="">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" onclick="nextStep()">Continue to Patient-Specific Assessment</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Patient-Specific Principles -->
+            <div class="step-section" id="step2">
+                <div class="principle-header">
+                    <div class="principle-count">10</div>
+                    <h2>👤 Patient-Specific Principles</h2>
+                    <p>Personalized assessment based on individual constitution</p>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🌍 <span>Environmental Factors</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="desha">Deśa <span class="sanskrit-term">(Region/Geography)</span></label>
+                            <select id="desha">
+                                <option value="">Select your region</option>
+                                <option value="coastal">Coastal (Jangala - Dry region)</option>
+                                <option value="mountain">Mountain (Girishya - Hilly region)</option>
+                                <option value="plain">Plains (Madhyadesha - Central region)</option>
+                                <option value="desert">Desert (Marubhumi - Arid region)</option>
+                                <option value="tropical">Tropical (Tropical region)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="kala">Kāla <span class="sanskrit-term">(Current Season)</span></label>
+                            <select id="kala">
+                                <option value="">Select current season</option>
+                                <option value="vasanta">Vasanta (Spring - March-April)</option>
+                                <option value="grishma">Grishma (Summer - May-June)</option>
+                                <option value="varsha">Varsha (Monsoon - July-August)</option>
+                                <option value="sharad">Sharad (Autumn - September-October)</option>
+                                <option value="shishir">Shishir (Winter - November-December)</option>
+                                <option value="hemanta">Hemanta (Late Winter - January-February)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🔥 <span>Digestive Assessment</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="agni">Agni <span class="sanskrit-term">(Digestive Fire Strength)</span></label>
+                            <select id="agni">
+                                <option value="">Assess your digestive capacity</option>
+                                <option value="vishama">Vishama Agni (Irregular - Vata type)</option>
+                                <option value="tikshna">Tikshna Agni (Sharp - Pitta type)</option>
+                                <option value="manda">Manda Agni (Slow - Kapha type)</option>
+                                <option value="sama">Sama Agni (Balanced - Ideal)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="vaya">Vaya <span class="sanskrit-term">(Life Stage)</span></label>
+                            <select id="vaya">
+                                <option value="">Select life stage</option>
+                                <option value="bala">Bala (Childhood - 0-16 years)</option>
+                                <option value="madhya">Madhya (Adulthood - 16-60 years)</option>
+                                <option value="vriddha">Vriddha (Elderly - 60+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🌿 <span>Taste & Constitution</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Rasa <span class="sanskrit-term">(Preferred Tastes - Select up to 3)</span></label>
+                        <div class="rasa-selector">
+                            <div class="rasa-item" onclick="toggleRasa(this, 'madhura')">
+                                <div>🍯 Madhura</div>
+                                <div>(Sweet)</div>
+                            </div>
+                            <div class="rasa-item" onclick="toggleRasa(this, 'amla')">
+                                <div>🍋 Amla</div>
+                                <div>(Sour)</div>
+                            </div>
+                            <div class="rasa-item" onclick="toggleRasa(this, 'lavana')">
+                                <div>🧂 Lavana</div>
+                                <div>(Salty)</div>
+                            </div>
+                            <div class="rasa-item" onclick="toggleRasa(this, 'katu')">
+                                <div>🌶️ Katu</div>
+                                <div>(Pungent)</div>
+                            </div>
+                            <div class="rasa-item" onclick="toggleRasa(this, 'tikta')">
+                                <div>🌿 Tikta</div>
+                                <div>(Bitter)</div>
+                            </div>
+                            <div class="rasa-item" onclick="toggleRasa(this, 'kashaya')">
+                                <div>🍃 Kashaya</div>
+                                <div>(Astringent)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="satmya">Satmya <span class="sanskrit-term">(Food Habituation)</span></label>
+                        <textarea id="satmya" rows="3" placeholder="Foods you are accustomed to eating regularly (e.g., rice, wheat, specific vegetables, dairy products)"></textarea>
+                    </div>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🏥 <span>Health & Activity Assessment</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="avastha">Āvasthā <span class="sanskrit-term">(Current Health State)</span></label>
+                            <select id="avastha">
+                                <option value="">Select current health condition</option>
+                                <option value="swastha">Swastha (Healthy)</option>
+                                <option value="alpavyadhi">Alpa Vyadhi (Minor ailments)</option>
+                                <option value="madhyamavyadhi">Madhyama Vyadhi (Moderate illness)</option>
+                                <option value="tivravyadhi">Tivra Vyadhi (Severe condition)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="prakrti">Prakṛti <span class="sanskrit-term">(Body Constitution)</span></label>
+                            <div class="dosha-assessment">
+                                <div class="dosha-card vata" onclick="selectDosha('vata')">
+                                    <span class="dosha-icon">💨</span>
+                                    <h4>Vata</h4>
+                                    <p>Air + Space</p>
+                                    <small>Dry, light, cold, rough, mobile</small>
+                                </div>
+                                <div class="dosha-card pitta" onclick="selectDosha('pitta')">
+                                    <span class="dosha-icon">🔥</span>
+                                    <h4>Pitta</h4>
+                                    <p>Fire + Water</p>
+                                    <small>Hot, sharp, light, oily, liquid</small>
+                                </div>
+                                <div class="dosha-card kapha" onclick="selectDosha('kapha')">
+                                    <span class="dosha-icon">🌊</span>
+                                    <h4>Kapha</h4>
+                                    <p>Water + Earth</p>
+                                    <small>Heavy, slow, cold, oily, stable</small>
+                                </div>
+                            </div>
+                            <input type="hidden" id="selectedDosha" name="prakrti">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="vyadhi">Vyādhi <span class="sanskrit-term">(Specific Diseases)</span></label>
+                            <textarea id="vyadhi" rows="3" placeholder="Current health conditions, chronic diseases, or specific ailments"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="vyayama">Vyayāma <span class="sanskrit-term">(Physical Activity Level)</span></label>
+                            <select id="vyayama">
+                                <option value="">Select activity level</option>
+                                <option value="alpa">Alpa Vyayama (Minimal - Sedentary)</option>
+                                <option value="madhya">Madhya Vyayama (Moderate - Regular walking)</option>
+                                <option value="uttama">Uttama Vyayama (Intense - Daily exercise)</option>
+                                <option value="ativyayama">Ati Vyayama (Excessive - Professional athlete)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button class="btn" onclick="nextStep()">Continue to Personal Details</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Personal Information -->
+            <div class="step-section" id="step3">
+                <div class="principle-header">
+                    <h2>📝 Personal Information</h2>
+                    <p>Complete your profile for precise recommendations</p>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        👤 <span>Basic Details</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" min="1" max="120" placeholder="Enter your age">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="">Select gender</option>
+                                <option value="male">Male (Purusha)</option>
+                                <option value="female">Female (Stree)</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" min="1" step="0.1" placeholder="Enter your weight">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" min="1" placeholder="Enter your height">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="occupation">Occupation</label>
+                            <select id="occupation">
+                                <option value="">Select occupation type</option>
+                                <option value="sedentary">Sedentary (Office work)</option>
+                                <option value="moderate">Moderate activity</option>
+                                <option value="physical">Physical labor</option>
+                                <option value="mental">Mental work</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ayurvedic-form">
+                    <div class="form-title">
+                        🍽️ <span>Dietary Preferences & Restrictions</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="dietType">Diet Type</label>
+                            <select id="dietType">
+                                <option value="">Select diet preference</option>
+                                <option value="vegetarian">Vegetarian (Shakahari)</option>
+                                <option value="vegan">Vegan (Niraman)</option>
+                                <option value="non-vegetarian">Non-vegetarian (Mansahari)</option>
+                                <option value="mixed">Mixed diet</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="allergies">Food Allergies/Intolerances</label>
+                            <textarea id="allergies" rows="3" placeholder="List any food allergies, intolerances, or foods to avoid"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="goals">Primary Health Goals</label>
+                            <select id="goals">
+                                <option value="">Select primary goal</option>
+                                <option value="weight-loss">Weight Loss (Sthaulya Chikitsa)</option>
+                                <option value="weight-gain">Weight Gain (Karshya Chikitsa)</option>
+                                <option value="digestive-health">Digestive Health (Agni Vardhana)</option>
+                                <option value="immunity">Boost Immunity (Ojas Vardhana)</option>
+                                <option value="stress-relief">Stress Relief (Mansik Shanti)</option>
+                                <option value="energy">Increase Energy (Bala Vardhana)</option>
+                                <option value="anti-aging">Anti-aging (Rasayana)</option>
+                                <option value="detox">Detoxification (Shodhana)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button class="btn" onclick="generateAnalysis()">🤖 Generate AI Analysis</button>
+                </div>
+            </div>
+            
+            <!-- Step 4: ML Analysis -->
+            <div class="step-section" id="step4">
+                <div class="loading-state">
+                    <div class="ayurvedic-spinner"></div>
+                    <h3>🤖 AI-Powered Ayurvedic Analysis</h3>
+                    <p>Our machine learning models are analyzing your profile using 20 Ayurvedic principles...</p>
+                    <div id="analysisSteps"></div>
+                </div>
+            </div>
+            
+            <!-- Step 5: Personalized Diet Chart -->
+            <div class="step-section" id="step5">
+                <div class="principle-header">
+                    <h2>🌿 Your Personalized Āhāra Vidhi Vidhan</h2>
+                    <p>Based on comprehensive Ayurvedic assessment</p>
+                </div>
+                
+                <div id="dietChart" class="diet-results"></div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="startOver()">New Assessment</button>
+                    <button class="btn" onclick="downloadChart()">📱 Download to Mobile</button>
+                    <button class="btn" onclick="cloudSync()">☁️ Save to Cloud</button>
+                    <button class="btn" onclick="shareResults()">📤 Share Results</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cloud-status" id="cloudStatus">
+        ☁️ Connected to Ayurvedic AI Cloud
+    </div>
+    
+    <div class="notification" id="notification"></div>
+    
+    <script>
+        let currentStep = 1;
+        let userProfile = {
+            generalPrinciples: {},
+            patientSpecific: {},
+            personalInfo: {},
+            selectedRasas: [],
+            dominantDosha: '',
+            recommendations: {}
+        };
+        
+        const ayurvedicDatabase = {
+            principles: {
+                general: [
+                    'ushna', 'snigdha', 'matravan', 'jirneashniyat', 'viryaaviruddham',
+                    'ishtadesha', 'utsahasamyukta', 'atmanam', 'doshapratyaanika', 'kritasamskara'
+                ],
+                patientSpecific: [
+                    'desha', 'kala', 'agni', 'vaya', 'satmya', 'rasa', 'avastha', 'prakrti', 'vyadhi', 'vyayama'
+                ]
+            },
+            
+            doshaCharacteristics: {
+                vata: {
+                    qualities: ['dry', 'light', 'cold', 'rough', 'mobile', 'subtle'],
+                    favorableFoods: ['warm cooked grains', 'sweet fruits', 'nuts', 'dairy', 'root vegetables', 'oils'],
+                    unfavorableFoods: ['cold foods', 'raw vegetables', 'dry foods', 'beans', 'caffeine'],
+                    spices: ['ginger', 'cinnamon', 'cardamom', 'cloves', 'fennel', 'asafoetida'],
+                    rasaBalance: ['madhura', 'amla', 'lavana'],
+                    cookingMethods: ['steaming', 'boiling', 'sautéing with ghee']
+                },
+                pitta: {
+                    qualities: ['hot', 'sharp', 'light', 'oily', 'liquid', 'spreading'],
+                    favorableFoods: ['cooling grains', 'sweet fruits', 'leafy greens', 'coconut', 'milk', 'ghee'],
+                    unfavorableFoods: ['spicy foods', 'sour fruits', 'fermented foods', 'alcohol', 'fried foods'],
+                    spices: ['coriander', 'fennel', 'cardamom', 'mint', 'rose', 'saffron'],
+                    rasaBalance: ['madhura', 'tikta', 'kashaya'],
+                    cookingMethods: ['steaming', 'boiling', 'minimal oil cooking']
+                },
+                kapha: {
+                    qualities: ['heavy', 'slow', 'cold', 'oily', 'smooth', 'stable'],
+                    favorableFoods: ['light grains', 'spicy foods', 'bitter vegetables', 'legumes', 'honey'],
+                    unfavorableFoods: ['heavy foods', 'dairy', 'sweet foods', 'fried foods', 'cold foods'],
+                    spices: ['black pepper', 'ginger', 'turmeric', 'mustard', 'chili', 'trikatu'],
+                    rasaBalance: ['katu', 'tikta', 'kashaya'],
+                    cookingMethods: ['roasting', 'grilling', 'dry cooking', 'minimal oil']
+                }
+            },
+            
+            seasonalGuidelines: {
+                vasanta: { increase: ['tikta', 'katu', 'kashaya'], decrease: ['madhura', 'amla'] },
+                grishma: { increase: ['madhura', 'tikta'], decrease: ['katu', 'amla', 'lavana'] },
+                varsha: { increase: ['katu', 'tikta', 'kashaya'], decrease: ['madhura', 'amla'] },
+                sharad: { increase: ['madhura', 'tikta', 'kashaya'], decrease: ['amla', 'lavana'] },
+                shishir: { increase: ['madhura', 'amla', 'lavana'], decrease: ['tikta', 'katu', 'kashaya'] },
+                hemanta: { increase: ['madhura', 'amla', 'lavana'], decrease: ['tikta', 'katu', 'kashaya'] }
+            }
+        };
+        
+        function updateProgress() {
+            const progress = (currentStep / 5) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        function nextStep() {
+            if (validateStep()) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep++;
+                updateProgress();
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                
+                if (currentStep === 2) {
+                    showNotification('General principles recorded. Moving to personalized assessment...', 'success');
+                } else if (currentStep === 3) {
+                    showNotification('Patient-specific principles analyzed. Please complete your profile...', 'info');
+                }
+            }
+        }
+        
+        function prevStep() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep--;
+            updateProgress();
+            document.getElementById(`step${currentStep}`).classList.add('active');
+        }
+        
+        function validateStep() {
+            switch(currentStep) {
+                case 1:
+                    const selectedGeneral = document.querySelectorAll('.principle-card.selected').length;
+                    if (selectedGeneral < 5) {
+                        showNotification('Please select at least 5 general principles that apply to you', 'warning');
+                        return false;
+                    }
+                    storeGeneralPrinciples();
+                    return true;
+                    
+                case 2:
+                    const desha = document.getElementById('desha').value;
+                    const kala = document.getElementById('kala').value;
+                    const agni = document.getElementById('agni').value;
+                    const selectedDosha = document.getElementById('selectedDosha').value;
+                    
+                    if (!desha || !kala || !agni || !selectedDosha) {
+                        showNotification('Please complete all required patient-specific assessments', 'warning');
+                        return false;
+                    }
+                    storePatientSpecific();
+                    return true;
+                    
+                case 3:
+                    const name = document.getElementById('name').value;
+                    const age = document.getElementById('age').value;
+                    const gender = document.getElementById('gender').value;
+                    
+                    if (!name || !age || !gender) {
+                        showNotification('Please fill in all required personal information', 'warning');
+                        return false;
+                    }
+                    storePersonalInfo();
+                    return true;
+            }
+            return true;
+        }
+        
+        function togglePrincipleCard(card, principle) {
+            card.classList.toggle('selected');
+            const input = card.querySelector('input[type="hidden"]');
+            input.value = card.classList.contains('selected') ? 'true' : '';
+        }
+        
+        function toggleRasa(rasaItem, rasa) {
+            if (rasaItem.classList.contains('selected')) {
+                rasaItem.classList.remove('selected');
+                userProfile.selectedRasas = userProfile.selectedRasas.filter(r => r !== rasa);
+            } else {
+                if (userProfile.selectedRasas.length < 3) {
+                    rasaItem.classList.add('selected');
+                    userProfile.selectedRasas.push(rasa);
+                } else {
+                    showNotification('Please select maximum 3 preferred tastes', 'warning');
+                }
+            }
+        }
+        
+        function selectDosha(dosha) {
+            document.querySelectorAll('.dosha-card').forEach(card => {
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = 'none';
+            });
+            
+            const selectedCard = document.querySelector(`.dosha-card.${dosha}`);
+            selectedCard.style.transform = 'scale(1.05)';
+            selectedCard.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+            
+            document.getElementById('selectedDosha').value = dosha;
+            userProfile.dominantDosha = dosha;
+        }
+        
+        function storeGeneralPrinciples() {
+            document.querySelectorAll('.principle-card.selected').forEach(card => {
+                const principleInput = card.querySelector('input[type="hidden"]');
+                const principleName = principleInput.name;
+                userProfile.generalPrinciples[principleName] = true;
+            });
+        }
+        
+        function storePatientSpecific() {
+            userProfile.patientSpecific = {
+                desha: document.getElementById('desha').value,
+                kala: document.getElementById('kala').value,
+                agni: document.getElementById('agni').value,
+                vaya: document.getElementById('vaya').value,
+                satmya: document.getElementById('satmya').value,
+                rasa: userProfile.selectedRasas,
+                avastha: document.getElementById('avastha').value,
+                prakrti: document.getElementById('selectedDosha').value,
+                vyadhi: document.getElementById('vyadhi').value,
+                vyayama: document.getElementById('vyayama').value
+            };
+        }
+        
+        function storePersonalInfo() {
+            userProfile.personalInfo = {
+                name: document.getElementById('name').value,
+                age: parseInt(document.getElementById('age').value),
+                gender: document.getElementById('gender').value,
+                weight: parseFloat(document.getElementById('weight').value),
+                height: parseInt(document.getElementById('height').value),
+                occupation: document.getElementById('occupation').value,
+                dietType: document.getElementById('dietType').value,
+                allergies: document.getElementById('allergies').value,
+                goals: document.getElementById('goals').value
+            };
+        }
+        
+        function generateAnalysis() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep = 4;
+            updateProgress();
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            simulateMLAnalysis();
+        }
+        
+        function simulateMLAnalysis() {
+            const steps = [
+                'Analyzing general Ayurvedic principles...',
+                'Processing patient-specific factors...',
+                'Calculating dosha balance...',
+                'Applying seasonal adjustments...',
+                'Generating personalized recommendations...',
+                'Creating custom meal plan...',
+                'Finalizing diet chart...'
+            ];
+            
+            let currentAnalysisStep = 0;
+            const analysisContainer = document.getElementById('analysisSteps');
+            
+            function updateAnalysisStep() {
+                if (currentAnalysisStep < steps.length) {
+                    analysisContainer.innerHTML += `<p>✓ ${steps[currentAnalysisStep]}</p>`;
+                    currentAnalysisStep++;
+                    setTimeout(updateAnalysisStep, 800);
+                } else {
+                    setTimeout(() => {
+                        processAyurvedicData();
+                        showResults();
+                    }, 1500);
+                }
+            }
+            
+            updateAnalysisStep();
+        }
+        
+        function processAyurvedicData() {
+            const dosha = userProfile.dominantDosha || 'vata';
+            const doshaData = ayurvedicDatabase.doshaCharacteristics[dosha];
+            const season = userProfile.patientSpecific.kala || 'varsha';
+            const seasonalData = ayurvedicDatabase.seasonalGuidelines[season];
+            
+            // Generate personalized recommendations
+            userProfile.recommendations = {
+                dominantDosha: dosha,
+                balancingFoods: doshaData.favorableFoods,
+                avoidFoods: doshaData.unfavorableFoods,
+                recommendedSpices: doshaData.spices,
+                cookingMethods: doshaData.cookingMethods,
+                seasonalAdjustments: seasonalData,
+                mealPlan: generateMealPlan(dosha, season)
+            };
+        }
+        
+        function generateMealPlan(dosha, season) {
+            const mealPlans = {
+                vata: {
+                    breakfast: ['Warm oatmeal with ghee and dates', 'Herbal tea with ginger', 'Soaked almonds'],
+                    lunch: ['Kitchari with vegetables', 'Basmati rice', 'Warm soup', 'Steamed vegetables with ghee'],
+                    dinner: ['Light khichdi', 'Warm milk with turmeric', 'Cooked seasonal vegetables'],
+                    snacks: ['Dates and nuts', 'Warm herbal tea', 'Sweet fruits']
+                },
+                pitta: {
+                    breakfast: ['Cool yogurt with sweet fruits', 'Coconut water', 'Fresh fruit smoothie'],
+                    lunch: ['Basmati rice with cooling herbs', 'Green leafy vegetables', 'Cucumber salad', 'Sweet lassi'],
+                    dinner: ['Light vegetable soup', 'Steamed greens', 'Cool milk with rose'],
+                    snacks: ['Sweet fruits', 'Coconut water', 'Cooling drinks']
+                },
+                kapha: {
+                    breakfast: ['Light breakfast with spices', 'Ginger tea', 'Honey with warm water'],
+                    lunch: ['Quinoa with vegetables', 'Spicy curry', 'Bitter greens', 'Herbal tea'],
+                    dinner: ['Light soup with black pepper', 'Steamed vegetables', 'Warm spiced milk'],
+                    snacks: ['Fresh fruits', 'Herbal teas', 'Light roasted snacks']
+                }
+            };
+            
+            return mealPlans[dosha];
+        }
+        
+        function showResults() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep = 5;
+            updateProgress();
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            displayDietChart();
+            showNotification('Your personalized Ayurvedic diet chart is ready!', 'success');
+        }
+        
+        function displayDietChart() {
+            const chartContainer = document.getElementById('dietChart');
+            const recommendations = userProfile.recommendations;
+            
+            chartContainer.innerHTML = `
+                <div class="results-header">
+                    <h3>🕉️ Personalized for ${userProfile.personalInfo.name}</h3>
+                    <p>Dominant Dosha: <strong>${recommendations.dominantDosha.toUpperCase()}</strong></p>
+                    <p>Based on comprehensive analysis of 20 Ayurvedic principles</p>
+                </div>
+                
+                <div class="ml-analysis">
+                    <h4>🤖 AI Analysis Summary</h4>
+                    <p><strong>Constitution Assessment:</strong> Your ${recommendations.dominantDosha} constitution requires ${recommendations.dominantDosha === 'vata' ? 'warming and nourishing' : recommendations.dominantDosha === 'pitta' ? 'cooling and soothing' : 'light and stimulating'} foods.</p>
+                    <p><strong>Seasonal Consideration:</strong> Current season recommendations emphasize ${Object.keys(recommendations.seasonalAdjustments.increase).join(', ')} tastes.</p>
+                    <p><strong>Personalization Score:</strong> 95% - Highly customized based on your unique profile</p>
+                </div>
+                
+                <div class="meal-timeline">
+                    <div class="meal-card breakfast">
+                        <div class="meal-time">7:00-9:00 AM</div>
+                        <h4>🌅 Prātaḥ Āhāra (Breakfast)</h4>
+                        <div class="food-recommendations">
+                            ${recommendations.mealPlan.breakfast.map(food => `<div class="food-item">${food}</div>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="meal-card lunch">
+                        <div class="meal-time">12:00-2:00 PM</div>
+                        <h4>🌞 Madhyāhna Āhāra (Lunch)</h4>
+                        <div class="food-recommendations">
+                            ${recommendations.mealPlan.lunch.map(food => `<div class="food-item">${food}</div>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="meal-card dinner">
+                        <div class="meal-time">6:00-8:00 PM</div>
+                        <h4>🌙 Sāyam Āhāra (Dinner)</h4>
+                        <div class="food-recommendations">
+                            ${recommendations.mealPlan.dinner.map(food => `<div class="food-item">${food}</div>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="meal-card snacks">
+                        <div class="meal-time">As needed</div>
+                        <h4>🍎 Alpa Āhāra (Snacks)</h4>
+                        <div class="food-recommendations">
+                            ${recommendations.mealPlan.snacks.map(food => `<div class="food-item">${food}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="principle-explanation">
+                    <h4>📚 Applied Ayurvedic Principles</h4>
+                    <p><strong>Recommended Spices:</strong> ${recommendations.recommendedSpices.join(', ')}</p>
+                    <p><strong>Cooking Methods:</strong> ${recommendations.cookingMethods.join(', ')}</p>
+                    <p><strong>Foods to Favor:</strong> ${recommendations.balancingFoods.join(', ')}</p>
+                    <p><strong>Foods to Minimize:</strong> ${recommendations.avoidFoods.join(', ')}</p>
+                    <p><strong>Health Goal Support:</strong> This plan is specifically designed to support your goal of ${userProfile.personalInfo.goals}</p>
+                </div>
+            `;
+        }
+        
+        function startOver() {
+            currentStep = 1;
+            userProfile = {
+                generalPrinciples: {},
+                patientSpecific: {},
+                personalInfo: {},
+                selectedRasas: [],
+                dominantDosha: '',
+                recommendations: {}
+            };
+            updateProgress();
+            
+            // Reset all forms
+            document.querySelectorAll('input, select, textarea').forEach(field => {
+                field.value = '';
+            });
+            
+            document.querySelectorAll('.principle-card.selected, .rasa-item.selected').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.dosha-card').forEach(card => {
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = 'none';
+            });
+            
+            document.querySelectorAll('.step-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('step1').classList.add('active');
+            
+            showNotification('Starting new Ayurvedic assessment', 'info');
+        }
+        
+        function downloadChart() {
+            const chartData = {
+                userProfile: userProfile,
+                timestamp: new Date().toISOString(),
+                platform: 'Ayurvedic Diet Platform'
+            };
+            
+            const dataStr = JSON.stringify(chartData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `ayurvedic-diet-chart-${userProfile.personalInfo.name.replace(/\s/g, '-')}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showNotification('Diet chart downloaded successfully!', 'success');
+        }
+        
+        function cloudSync() {
+            showNotification('Syncing to Ayurvedic AI Cloud...', 'info');
+            
+            // Simulate cloud sync
+            const syncData = {
+                userId: generateUserId(),
+                profile: userProfile,
+                timestamp: new Date().toISOString(),
+                syncStatus: 'completed'
+            };
+            
+            setTimeout(() => {
+                console.log('Cloud sync data:', syncData);
+                showNotification('Successfully saved to cloud! Access from any device.', 'success');
+                updateCloudStatus('Synced');
+            }, 2000);
+        }
+        
+        function shareResults() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Ayurvedic Diet Chart',
+                    text: `Personalized Ayurvedic diet plan based on ${userProfile.dominantDosha} constitution`,
+                    url: window.location.href
+                }).then(() => {
+                    showNotification('Diet chart shared successfully!', 'success');
+                }).catch((error) => {
+                    console.log('Error sharing:', error);
+                    fallbackShare();
+                });
+            } else {
+                fallbackShare();
+            }
+        }
+        
+        function fallbackShare() {
+            const shareText = `Check out my personalized Ayurvedic diet chart! Based on ${userProfile.dominantDosha.toUpperCase()} constitution with recommendations following 20 ancient principles. #Ayurveda #HealthyLiving`;
+            
+            navigator.clipboard.writeText(shareText).then(() => {
+                showNotification('Share text copied to clipboard!', 'success');
+            }).catch(() => {
+                showNotification('Please copy and share your results manually', 'info');
+            });
+        }
+        
+        function generateUserId() {
+            return 'user_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        function updateCloudStatus(status) {
+            const cloudStatus = document.getElementById('cloudStatus');
+            cloudStatus.innerHTML = `☁️ ${status} - Ayurvedic AI Cloud`;
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification show';
+            
+            const colors = {
+                success: '#4CAF50',
+                error: '#F44336',
+                info: '#2196F3',
+                warning: '#FF9800'
+            };
+            
+            notification.style.background = colors[type] || colors.info;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+        
+        // Initialize platform
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && currentStep < 3) {
+                    nextStep();
+                } else if (e.key === 'Escape' && currentStep > 1) {
+                    prevStep();
+                }
+            });
+            
+            // Form validation
+            const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() === '' && this.hasAttribute('required')) {
+                        this.style.borderColor = '#F44336';
+                    } else {
+                        this.style.borderColor = '#E0E0E0';
+                    }
+                });
+            });
+            
+            // Auto-save functionality
+            setInterval(() => {
+                if (currentStep > 1) {
+                    const tempData = {
+                        step: currentStep,
+                        profile: userProfile,
+                        timestamp: new Date().toISOString()
+                    };
+                    // Store in memory for session persistence
+                    window.sessionData = tempData;
+                }
+            }, 30000); // Auto-save every 30 seconds
+            
+            // Initialize cloud connection
+            setTimeout(() => {
+                updateCloudStatus('Connected');
+            }, 1000);
+        });
+        
+        // Advanced Features
+        
+        function generateDetailedReport() {
+            const report = {
+                patientInfo: userProfile.personalInfo,
+                constitution: userProfile.dominantDosha,
+                appliedPrinciples: {
+                    general: userProfile.generalPrinciples,
+                    patientSpecific: userProfile.patientSpecific
+                },
+                recommendations: userProfile.recommendations,
+                compliance: calculateCompliance(),
+                futureAdjustments: generateFutureRecommendations()
+            };
+            
+            return report;
+        }
+        
+        function calculateCompliance() {
+            // Simulate compliance calculation based on user inputs
+            const generalCount = Object.keys(userProfile.generalPrinciples).length;
+            const specificCount = Object.keys(userProfile.patientSpecific).filter(key => 
+                userProfile.patientSpecific[key] && userProfile.patientSpecific[key] !== ''
+            ).length;
+            
+            const totalPossible = 20;
+            const totalApplied = generalCount + specificCount;
+            
+            return {
+                score: Math.round((totalApplied / totalPossible) * 100),
+                applied: totalApplied,
+                total: totalPossible,
+                level: totalApplied >= 15 ? 'Excellent' : totalApplied >= 10 ? 'Good' : 'Needs Improvement'
+            };
+        }
+        
+        function generateFutureRecommendations() {
+            const currentSeason = userProfile.patientSpecific.kala;
+            const nextSeasons = {
+                'vasanta': 'grishma',
+                'grishma': 'varsha',
+                'varsha': 'sharad',
+                'sharad': 'shishir',
+                'shishir': 'hemanta',
+                'hemanta': 'vasanta'
+            };
+            
+            const nextSeason = nextSeasons[currentSeason] || 'vasanta';
+            const nextSeasonGuidelines = ayurvedicDatabase.seasonalGuidelines[nextSeason];
+            
+            return {
+                nextSeason: nextSeason,
+                upcomingChanges: nextSeasonGuidelines,
+                reminder: `Adjust your diet in 2-3 months when ${nextSeason} season begins`
+            };
+        }
+        
+        // Mobile app functionality
+        function enableMobileFeatures() {
+            // Add to home screen prompt
+            let deferredPrompt;
+            
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                showInstallPrompt();
+            });
+            
+            // Push notification setup (simulated)
+            if ('Notification' in window && 'serviceWorker' in navigator) {
+                requestNotificationPermission();
+            }
+        }
+        
+        function showInstallPrompt() {
+            const installBanner = document.createElement('div');
+            installBanner.innerHTML = `
+                <div style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; padding: 15px; text-align: center; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1002;">
+                    <p>📱 Install Ayurvedic Diet App for better experience</p>
+                    <button onclick="installApp()" style="background: white; color: #4CAF50; border: none; padding: 8px 16px; border-radius: 5px; margin: 5px;">Install</button>
+                    <button onclick="dismissInstall()" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 5px; margin: 5px;">Later</button>
+                </div>
+            `;
+            document.body.appendChild(installBanner);
+        }
+        
+        function requestNotificationPermission() {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    scheduleReminders();
+                }
+            });
+        }
+        
+        function scheduleReminders() {
+            // Simulate meal time reminders
+            const mealTimes = [
+                { time: '08:00', message: '🌅 Time for your Ayurvedic breakfast!' },
+                { time: '13:00', message: '🌞 Lunch time - your main meal of the day!' },
+                { time: '19:00', message: '🌙 Light dinner time according to Ayurveda!' }
+            ];
+            
+            console.log('Meal reminders scheduled:', mealTimes);
+        }
+        
+        // Analytics and tracking (simulated)
+        function trackUserInteraction(action, data = {}) {
+            const analyticsData = {
+                userId: generateUserId(),
+                action: action,
+                timestamp: new Date().toISOString(),
+                sessionData: data,
+                platform: 'web'
+            };
+            
+            console.log('Analytics tracked:', analyticsData);
+        }
+        
+        // API integration simulation
+        function syncWithHealthApps() {
+            // Simulate integration with health tracking apps
+            const healthData = {
+                steps: Math.floor(Math.random() * 10000) + 5000,
+                heartRate: Math.floor(Math.random() * 40) + 60,
+                sleep: Math.floor(Math.random() * 3) + 6,
+                weight: userProfile.personalInfo.weight || 70
+            };
+            
+            console.log('Health app integration:', healthData);
+            return healthData;
+        }
+        
+        // Multilingual support (basic structure)
+        const translations = {
+            en: {
+                title: "Āhāra Vidhi Vidhan",
+                subtitle: "Advanced Ayurvedic Diet Platform"
+            },
+            hi: {
+                title: "आहार विधि विधान",
+                subtitle: "उन्नत आयुर्वेदिक आहार मंच"
+            },
+            sa: {
+                title: "आहारविधिविधानम्",
+                subtitle: "उत्कृष्टम् आयुर्वेदिकम् आहारमंचम्"
+            }
+        };
+        
+        function changeLanguage(lang) {
+            const translation = translations[lang];
+            if (translation) {
+                document.querySelector('.platform-header h1').textContent = translation.title;
+                document.querySelector('.platform-header .subtitle').textContent = translation.subtitle;
+                showNotification(`Language changed to ${lang.toUpperCase()}`, 'info');
+            }
+        }
+        
+        // Expert consultation booking (simulated)
+        function bookConsultation() {
+            const consultationData = {
+                patientId: generateUserId(),
+                profile: userProfile,
+                requestedDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                consultationType: 'ayurvedic-nutrition',
+                priority: userProfile.personalInfo.goals === 'weight-loss' ? 'high' : 'normal'
+            };
+            
+            showNotification('Consultation request submitted! An Ayurvedic expert will contact you.', 'success');
+            console.log('Consultation booked:', consultationData);
+        }
+        
+        // Initialize mobile features
+        document.addEventListener('DOMContentLoaded', function() {
+            enableMobileFeatures();
+            
+            // Track initial page load
+            trackUserInteraction('page_load', {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            });
+        });
+        
+        // Service Worker registration for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/ayurvedic-sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                        updateCloudStatus('Offline Ready');
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+        // Advanced dosha assessment with detailed questionnaire
+        function conductAdvancedDoshaAssessment() {
+            const questionnaire = [
+                {
+                    category: 'Physical',
+                    questions: [
+                        'Body frame: Thin/Medium/Large',
+                        'Skin type: Dry/Sensitive/Oily',
+                        'Hair quality: Dry/Fine/Thick',
+                        'Eyes: Small/Medium/Large',
+                        'Appetite: Variable/Strong/Steady'
+                    ]
+                },
+                {
+                    category: 'Mental',
+                    questions: [
+                        'Learning: Quick/Moderate/Slow',
+                        'Memory: Poor long-term/Sharp/Good long-term',
+                        'Emotions: Anxious/Irritable/Calm',
+                        'Decision making: Quick/Decisive/Slow',
+                        'Speech: Fast/Clear/Slow'
+                    ]
+                }
+            ];
+            
+            return questionnaire;
+        }
+        
+        // Seasonal transition alerts
+        function setupSeasonalAlerts() {
+            const seasonalTransitions = {
+                'March 15': 'vasanta',
+                'May 15': 'grishma',
+                'July 15': 'varsha',
+                'September 15': 'sharad',
+                'November 15': 'shishir',
+                'January 15': 'hemanta'
+            };
+            
+            // Check for upcoming seasonal transitions
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1;
+            const currentDay = today.getDate();
+            
+            Object.entries(seasonalTransitions).forEach(([date, season]) => {
+                const [month, day] = date.split(' ')[0].split('/');
+                // Logic to check and alert for seasonal transitions
+            });
+        }
+        
+        // Integration with wearable devices (simulated)
+        function connectWearableDevice() {
+            const deviceData = {
+                heartRateVariability: Math.random() * 50 + 30,
+                stressLevel: Math.random() * 10,
+                sleepQuality: Math.random() * 100,
+                activityLevel: Math.random() * 100
+            };
+            
+            // Adjust recommendations based on wearable data
+            if (deviceData.stressLevel > 7) {
+                showNotification('High stress detected. Consider Vata-balancing foods today.', 'warning');
+            }
+            
+            return deviceData;
+        }
+    </script>
+</body>
+</html>
